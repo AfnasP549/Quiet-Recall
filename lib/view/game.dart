@@ -1,8 +1,11 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:quiet_recall/core/constants/app_color.dart'; // Adjust path
-import 'package:quiet_recall/core/widget/custom_appbar.dart'; // Adjust path
-import 'package:quiet_recall/view_model/game_view_model.dart'; // Adjust path
+import 'package:quiet_recall/core/constants/app_color.dart';
+import 'package:quiet_recall/core/widget/custom_appbar.dart';
+import 'package:quiet_recall/core/widget/game_timer.dart';
+import 'package:quiet_recall/view_model/game_view_model.dart';
 
 class Game extends StatefulWidget {
   const Game({super.key});
@@ -46,56 +49,69 @@ class _GameState extends State<Game> {
                       child: AnimatedContainer(
                         duration: Duration(milliseconds: 300),
                         decoration: BoxDecoration(
-                          color: viewModel.showAllCards || card.isFlipped || card.isMatched
-                              ? AppColor.tertiaryColor
-                              : AppColor.secondaryColor,
+                          color:
+                              viewModel.showAllCards ||
+                                      card.isFlipped ||
+                                      card.isMatched
+                                  ? AppColor.tertiaryColor
+                                  : AppColor.secondaryColor,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Center(
-                          child: viewModel.showAllCards || card.isFlipped || card.isMatched
-                              ? Text(
-                                  card.id,
-                                  style: TextStyle(fontSize: 40),
-                                )
-                              : Icon(
-                                  Icons.question_mark,
-                                  size: 40,
-                                  color: Colors.white,
-                                ),
+                          child:
+                              viewModel.showAllCards ||
+                                      card.isFlipped ||
+                                      card.isMatched
+                                  ? Text(
+                                    card.id,
+                                    style: TextStyle(fontSize: 40),
+                                  )
+                                  : Icon(
+                                    Icons.question_mark,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
                         ),
                       ),
                     );
                   },
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: AppColor.secondaryColor,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(
-                      Icons.access_time_filled,
-                      color: AppColor.iconPrimaryColor,
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      viewModel.formatTime(viewModel.elapsedTime),
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
+
+              // Timer
+              GameTimer(time: viewModel.formatTime(viewModel.elapsedTime)),
+              // Container(
+              //   padding: EdgeInsets.all(16.0),
+              //   decoration: BoxDecoration(
+              //     color: AppColor.secondaryColor,
+              //     borderRadius: BorderRadius.circular(100),
+              //   ),
+              //   child: Row(
+              //     mainAxisSize: MainAxisSize.min,
+              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //     children: [
+              //       Icon(
+              //         Icons.access_time_filled,
+              //         color: AppColor.iconPrimaryColor,
+              //       ),
+              //       SizedBox(width: 10),
+              //       Text(
+              //         viewModel.formatTime(viewModel.elapsedTime),
+              //         style: TextStyle(fontSize: 20),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(height: 22),
+
+              // High Score
               Text(
                 'High Score: ${viewModel.bestTime != null ? viewModel.formatTime(viewModel.bestTime!) : "N/A"}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 22),
+
+              // Game Won
               if (viewModel.gameWon)
                 Padding(
                   padding: EdgeInsets.all(16.0),
@@ -106,20 +122,30 @@ class _GameState extends State<Game> {
                         style: TextStyle(fontSize: 24),
                       ),
                       SizedBox(height: 22),
+
+                      // Play Again
                       ElevatedButton(
                         onPressed: () {
                           viewModel.resetGame();
                         },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.repeat_rounded, color: AppColor.iconSecondaryColor),
-                            SizedBox(width: 10),
-                            Text(
-                              'Play Again',
-                              style: TextStyle(color: AppColor.textSecondaryColor),
-                            ),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.repeat_rounded,
+                                color: AppColor.iconSecondaryColor,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                'Play Again',
+                                style: TextStyle(
+                                  color: AppColor.textSecondaryColor,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

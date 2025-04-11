@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-    //  backgroundColor: Colors.blue, // Match the game theme
       body: Consumer<GameViewModel>(
         builder: (context, viewModel, _) {
           
@@ -22,14 +21,18 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Game Logo/Image
-              Image.asset(
-                'asset/applogo.png',
-                width: 380,
-                height: 600,
+              
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.asset(
+                  'asset/applogo.png',
+                  width: 380,
+                  height: 380,
+                  fit: BoxFit.fill,
+                ),
               ),
               SizedBox(height: 40),
-              // High Score Display
+              // High Score
               Text(
                 'High Score: ${viewModel.bestTime != null ? viewModel.formatTime(viewModel.bestTime!) : "N/A"}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -44,10 +47,13 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 40),
                   textStyle: TextStyle(fontSize: 20),
                 ),
-                child: Text('Start',style: TextStyle(color: AppColor.textSecondaryColor),),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text('Start',style: TextStyle(color: AppColor.textSecondaryColor),),
+                ),
               ),
             ],
           ),
