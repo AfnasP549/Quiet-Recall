@@ -1,16 +1,57 @@
-# quiet_recall
+# 🧠 Quiet Recall - Memory Card Game App
 
-A new Flutter project.
+Quiet Recall is a Flutter-based memory card game designed to test and train your memory skills. Flip cards, match pairs, beat your best time, and have fun!
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🎮 Simple and interactive card-flip game
+- 🕒 Timer to track your performance
+- 🏆 High score tracking
+- 🔁 Replay option
+- 🖼️ Clean UI with responsive design using Provider for state management
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📦 Dependencies
+
+- `provider`: State management
+- `flutter`: UI framework
+
+## 🧩 Folder Structure -MVVM
+
+lib/ │ 
+├── core/ │ ├── constants/ │ 
+            │ └── app_color.dart │ 
+            └── widget/ │ ├── custom_appbar.dart │ └── game_card.dart │ 
+├── view/ │ └── splash.dart │ └── home.dart │ └── game.dart │
+├── view_model/ │ └── game_view_model.dart │ └── main.dart
+
+
+
+## 🛠️ Getting Started
+
+1. Clone the repo:
+   ```bash
+   git clone (https://github.com/AfnasP549/Quiet-Recall.git)
+   cd quiet_recall
+
+
+##Get the packages:
+
+flutter pub get
+
+
+
+##Run the app:
+
+flutter run
+
+
+📬 Contact
+
+📧 Email: afnasp549@gmail.com 📞 Phone: +91 8156961549
+
+
+
+
+
