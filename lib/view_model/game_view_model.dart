@@ -7,14 +7,14 @@ class GameViewModel extends ChangeNotifier {
   List<CardModel> cards = [];
   int? firstFlippedIndex;
   int? secondFlippedIndex;
-  bool isProcessing = false;
+  bool isProcessing = false; //flippinf progress
   int matchedPairs = 0;
   int elapsedTime = 0;
   bool gameWon = false;
   int? bestTime;
   Timer? _timer;
   bool _isGameStarted = false;
-  bool showAllCards = false; // New flag to show all cards initially
+  bool showAllCards = false;
 
   GameViewModel() {
     _initializeGame();
@@ -28,7 +28,7 @@ class GameViewModel extends ChangeNotifier {
   }
 
   void _initializeGame() {
-    List<String> emojiIds = ['😊', '⭐', '🐱', '🍎', '🚀', '🌸', '🎉', '🐶'];
+    List<String> emojiIds = ['⭐', '🍒', '🦋', '🎈', '🐾', '🌺', '🚀', '🧀'];
     List<String> cardIds = [...emojiIds, ...emojiIds];
     cardIds.shuffle();
     cards = cardIds.map((id) => CardModel(id: id)).toList();
@@ -39,7 +39,7 @@ class GameViewModel extends ChangeNotifier {
     secondFlippedIndex = null;
     isProcessing = false;
     _isGameStarted = false;
-    showAllCards = false; // Reset to false initially
+    showAllCards = false;
     notifyListeners();
   }
 
@@ -53,15 +53,18 @@ class GameViewModel extends ChangeNotifier {
       await Future.delayed(Duration(seconds: 5));
       showAllCards = false;
       for (var card in cards) {
-        if (!card.isMatched) card.isFlipped = false; // Flip all non-matched cards face down
+        if (!card.isMatched) card.isFlipped = false; // onlly possible to flip non matched cards
       }
-      _startTimer(); // Start the timer after the preview
+      _startTimer();   // timer started after preview
       notifyListeners();
     }
   }
 
-  void flipCard(int index) async {
-    if (isProcessing || cards[index].isFlipped || cards[index].isMatched || !_isGameStarted || showAllCards) return;
+  void flipCard(int index) async {//! for flipping two cards
+
+    if (isProcessing || cards[index].isFlipped || cards[index].isMatched || !_isGameStarted || showAllCards) {//showallcards for during preview time
+      return;
+    } // prevent the card from flipping 
 
     if (firstFlippedIndex == null) {
       firstFlippedIndex = index;
@@ -90,7 +93,7 @@ class GameViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _resetFlippedCards() {
+  void _resetFlippedCards() {// reset the card
     if (firstFlippedIndex != null && secondFlippedIndex != null) {
       if (!cards[firstFlippedIndex!].isMatched) cards[firstFlippedIndex!].isFlipped = false;
       if (!cards[secondFlippedIndex!].isMatched) cards[secondFlippedIndex!].isFlipped = false;
@@ -132,7 +135,7 @@ class GameViewModel extends ChangeNotifier {
     }
   }
 
-  void resetGame() async {
+  void resetGame() async {//! play again
     _stopTimer();
     _initializeGame();
     _isGameStarted = true;

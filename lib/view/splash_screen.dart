@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:quiet_recall/view/game.dart';
 import 'package:quiet_recall/view/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {

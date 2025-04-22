@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quiet_recall/core/constants/app_color.dart';
-import 'package:quiet_recall/core/widget/custom_appbar.dart';
-import 'package:quiet_recall/core/widget/game_timer.dart';
+import 'package:quiet_recall/view/widget/custom_appbar.dart';
+import 'package:quiet_recall/view/widget/game_timer.dart';
 import 'package:quiet_recall/view_model/game_view_model.dart';
 
 class Game extends StatefulWidget {
@@ -50,18 +50,13 @@ class _GameState extends State<Game> {
                         duration: Duration(milliseconds: 300),
                         decoration: BoxDecoration(
                           color:
-                              viewModel.showAllCards ||
-                                      card.isFlipped ||
-                                      card.isMatched
+                              viewModel.showAllCards || card.isFlipped || card.isMatched
                                   ? AppColor.tertiaryColor
                                   : AppColor.secondaryColor,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Center(
-                          child:
-                              viewModel.showAllCards ||
-                                      card.isFlipped ||
-                                      card.isMatched
+                          child:viewModel.showAllCards || card.isFlipped || card.isMatched
                                   ? Text(
                                     card.id,
                                     style: TextStyle(fontSize: 40),
@@ -80,28 +75,6 @@ class _GameState extends State<Game> {
 
               // Timer
               GameTimer(time: viewModel.formatTime(viewModel.elapsedTime)),
-              // Container(
-              //   padding: EdgeInsets.all(16.0),
-              //   decoration: BoxDecoration(
-              //     color: AppColor.secondaryColor,
-              //     borderRadius: BorderRadius.circular(100),
-              //   ),
-              //   child: Row(
-              //     mainAxisSize: MainAxisSize.min,
-              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //     children: [
-              //       Icon(
-              //         Icons.access_time_filled,
-              //         color: AppColor.iconPrimaryColor,
-              //       ),
-              //       SizedBox(width: 10),
-              //       Text(
-              //         viewModel.formatTime(viewModel.elapsedTime),
-              //         style: TextStyle(fontSize: 20),
-              //       ),
-              //     ],
-              //   ),
-              // ),
               SizedBox(height: 22),
 
               // High Score

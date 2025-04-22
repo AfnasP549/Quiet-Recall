@@ -3,7 +3,6 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:quiet_recall/core/constants/app_color.dart';
 import 'package:quiet_recall/model/card_model.dart';
-import 'package:quiet_recall/view/game.dart';
 import 'package:quiet_recall/view/splash_screen.dart';
 import 'package:quiet_recall/view_model/game_view_model.dart';
 
@@ -32,10 +31,10 @@ class MyApp extends StatelessWidget {
           iconTheme: IconThemeData(color: AppColor.iconPrimaryColor),
         ),
         textTheme: TextTheme(
-          bodyMedium: TextStyle(color: Colors.white),
-          bodyLarge: TextStyle(color: Colors.white),
-          titleMedium: TextStyle(color: Colors.white),
-          titleLarge: TextStyle(color: Colors.white),
+          bodyMedium: TextStyle(color: AppColor.textprimaryColor),
+          bodyLarge: TextStyle(color: AppColor.textprimaryColor),
+          titleMedium: TextStyle(color: AppColor.textprimaryColor),
+          titleLarge: TextStyle(color: AppColor.textprimaryColor),
         ),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
