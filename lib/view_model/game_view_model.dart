@@ -60,6 +60,8 @@ class GameViewModel extends ChangeNotifier {
     }
   }
 
+
+//! flipcard
   void flipCard(int index) async {//! for flipping two cards
 
     if (isProcessing || cards[index].isFlipped || cards[index].isMatched || !_isGameStarted || showAllCards) {//showallcards for during preview time

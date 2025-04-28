@@ -8,17 +8,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 80, // 👈 custom height
+      toolbarHeight: 80, 
       title: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Image.asset('asset/logo.png', height: 50), // Adjust logo height
+        child: Image.asset('asset/logo.png', height: 50), 
       ),
       centerTitle: true,
       actions: [
         Consumer<GameViewModel>(
           builder: (context, viewModel, _) => IconButton(
             onPressed: () => viewModel.resetGame(),
-            icon: const Icon(Icons.refresh, size: 30), // optional: bigger icon
+            icon: const Icon(Icons.refresh, size: 30), 
           ),
         ),
       ],
@@ -26,5 +26,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(80); // 👈 same as toolbarHeight
+  Size get preferredSize => const Size.fromHeight(80); 
 }
